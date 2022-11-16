@@ -86,6 +86,26 @@ public class PwGroupListAdapter extends BaseAdapter {
 			Collections.sort(entriesForViewing, entryComp);
 			Collections.sort(groupsForViewing, groupComp);
 		} else {
+			
+			/* ********OpenRefactory Warning********
+			 Possible null pointer dereference!
+			 Path: 
+				File: SearchResults.java, Line: 80
+					setListAdapter(new PwGroupListAdapter(this,mGroup));
+					 Information is passed through the method call via mGroup to the formal param group of the method. This later results into a null pointer dereference.
+				File: PwGroupListAdapter.java, Line: 49
+					PwGroup group
+					Variable mGroup is declared as a formal parameter.
+				File: PwGroupListAdapter.java, Line: 51
+					mGroup=group;
+					group is used to assign a value.
+				File: PwGroupListAdapter.java, Line: 54
+					filterAndSort();
+					 Information about field mGroup (from class PwGroupListAdapter) is passed through the method call. This later results into a null pointer dereference
+				File: PwGroupListAdapter.java, Line: 89
+					groupsForViewing=mGroup.childGroups;
+					mGroup is referenced in field access.
+			*/
 			groupsForViewing = mGroup.childGroups;
 		}
 	}
