@@ -262,7 +262,22 @@ public class Database {
     }
 
     public void markAllGroupsAsDirty() {
-        for ( PwGroup group : pm.getGroups() ) {
+        
+		/* ********OpenRefactory Warning********
+		 Possible null pointer dereference!
+		 Path: 
+			File: GroupBaseActivity.java, Line: 235
+				toggleSort();
+				A field reference of a local variable will be null based on information passed through this method call.
+			File: GroupBaseActivity.java, Line: 256
+				db.markAllGroupsAsDirty();
+				 Information about field pm (from class Database) is passed through the method call. This later results into a null pointer dereference
+			File: Database.java, Line: 265
+				pm.getGroups()
+				pm is referenced in method invocation.
+				The expression is enclosed inside an Enhanced For statement.
+		*/
+		for ( PwGroup group : pm.getGroups() ) {
             dirty.add(group);
         }
 
